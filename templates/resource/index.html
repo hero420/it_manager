@@ -1,0 +1,96 @@
+{% extends 'layout/mothor.html' %}
+{% block js %}
+<script src="http://cdn.hcharts.cn/mootools/MooTools-Core-1.5.1.js"></script>
+<script src="http://code.highcharts.com/adapters/mootools-adapter.js"></script>
+<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+{% endblock %}
+{% block left-menu %}
+   <ul class="nav nav-list bs-docs-sidenav affix-top">
+	<li class="active">
+	<a href="#overview"><i class="icon-chevron-right"></i> 硬件设备</a>
+        <ul >
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+         </ul>
+	</li>
+	<li class="">
+	<a href="#transitions"><i class="icon-chevron-right"></i> 链路资源</a>
+	</li>
+
+	</ul>
+
+	<script type="text/javascript">
+	$(function() {
+		$('.nav li').click(function(e) {
+			$('.nav li').removeClass('active');
+			//$(e.target).addClass('active');
+			$(this).addClass('active');
+		});
+	});
+
+	</script>
+
+{% endblock %}
+{% block right-content %}
+    <div>
+    <ol class="breadcrumb no-radius no-margin" style="border-bottom: 1px solid #ddd;">
+
+                <li><a href="/home/index/">首页</a></li>
+                <li><a href="javascript:void(0);">DNS</a></li>
+                <li><a href="/dns/zone/">域名</a></li>
+                <li class="active">域名解析</li>
+
+            </ol>
+    </div>
+<div id="container" style="min-width:400px;height:400px"></div>
+{% endblock %}
+<script>
+    $(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Browser market shares at a specific website, 2010'
+        },
+        tooltip: {
+    	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            data: [
+                ['Firefox',   45.0],
+                ['IE',       26.8],
+                {
+                    name: 'Chrome',
+                    y: 12.8,
+                    sliced: true,
+                    selected: true
+                },
+                ['Safari',    8.5],
+                ['Opera',     6.2],
+                ['Others',   0.7]
+            ]
+        }]
+    });
+});
+</script>
+
